@@ -248,85 +248,6 @@
   }
   .callout b{ color:var(--text); }
 
-  .hub-stage{
-    position:relative;
-    width:100%;
-    max-width:620px;
-    margin:36px auto 0;
-    aspect-ratio:600/500;
-  }
-  .hub-stage svg{ width:100%; height:100%; display:block; }
-  .hub-line{
-    stroke:var(--border);
-    stroke-width:3;
-    transition:stroke .35s ease, stroke-width .35s ease;
-  }
-  .hub-line.active{
-    stroke:var(--red);
-    stroke-width:4;
-  }
-  .hub-center{
-    fill:var(--text);
-  }
-  .hub-center-text{
-    fill:#ffffff;
-    font-family:var(--sans);
-    font-weight:600;
-    font-size:15px;
-    text-anchor:middle;
-  }
-  .hub-node{
-    position:absolute;
-    transform:translate(-50%,-50%);
-    background:var(--surface);
-    border:1px solid var(--border);
-    color:var(--text-muted);
-    font-family:var(--sans);
-    font-weight:600;
-    font-size:13px;
-    text-align:center;
-    padding:10px 14px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:all .25s ease;
-    max-width:170px;
-    line-height:1.3;
-  }
-  .hub-node:hover{ color:var(--text); border-color:var(--text-dim); }
-  .hub-node.active{
-    background:var(--red-dim);
-    border-color:var(--red);
-    color:var(--red-text);
-  }
-  .hub-node:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
-
-  .hub-node[data-node="product"]{ left:18%; top:14%; }
-  .hub-node[data-node="leadership"]{ left:8%; top:50%; }
-  .hub-node[data-node="campaigns"]{ left:18%; top:86%; }
-  .hub-node[data-node="sales"]{ left:82%; top:14%; }
-  .hub-node[data-node="ld"]{ left:82%; top:86%; }
-
-  .hub-panel{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:28px 32px;
-    margin-top:32px;
-    box-shadow:var(--shadow);
-    min-height:90px;
-  }
-  .hub-panel-content{ display:none; }
-  .hub-panel-content.active{ display:block; animation:fadein .35s ease; }
-  .hub-panel-content h3{
-    font-family:var(--mono);
-    font-size:13px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--red-text);
-    margin:0 0 12px;
-  }
-  .hub-panel-content p{ margin:0; color:var(--text); }
-
   .proof-row{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
@@ -634,47 +555,35 @@
     <p class="eyebrow">How I orchestrate cross-functional GTM</p>
     <h2>Product Marketing as the connective tissue</h2>
     <p class="lede">Cross-functional alignment works best when everyone is bought into GTM goals before execution begins, not at the handoff. My framework: what we set out to accomplish, what we measured, what moved, and what to adjust next.</p>
-    <p class="lede">I managed GTM across Business, Math, and Science discipline verticals at Cengage, each with its own faculty culture, adoption cycle, and competitive dynamics. Early launches often surfaced clear needs for improvement: for A&amp;P, the need for a lab manual to be fully competitive and additional digital support for physiology content; for Statistics, additional analytical features needed for the SALT tool to be fully viable. Click through each team below to see how Product Marketing connects with them.</p>
+    <p class="lede">I managed GTM across Business, Math, and Science discipline verticals at Cengage, each with its own faculty culture, adoption cycle, and competitive dynamics. Early launches often surfaced clear needs for improvement: for A&amp;P, the need for a lab manual to be fully competitive and additional digital support for physiology content; for Statistics, additional analytical features needed for the SALT tool to be fully viable. Click through each team below to see how I connected with them.</p>
 
-    <div class="hub-stage">
-      <svg viewBox="0 0 600 500" role="img" aria-label="Hub diagram showing Product Marketing connected to Product, Leadership, Campaigns and Demand Gen, Sales and Customer Success, and Learning and Development and Research">
-        <line class="hub-line active" data-node="product" x1="300" y1="250" x2="120" y2="80" />
-        <line class="hub-line" data-node="leadership" x1="300" y1="250" x2="65" y2="250" />
-        <line class="hub-line" data-node="campaigns" x1="300" y1="250" x2="120" y2="420" />
-        <line class="hub-line" data-node="sales" x1="300" y1="250" x2="480" y2="80" />
-        <line class="hub-line" data-node="ld" x1="300" y1="250" x2="480" y2="420" />
-        <circle class="hub-center" cx="300" cy="250" r="62" />
-        <text class="hub-center-text" x="300" y="245">Product</text>
-        <text class="hub-center-text" x="300" y="265">Marketing</text>
-      </svg>
-      <button class="hub-node active" data-node="product">Product</button>
-      <button class="hub-node" data-node="leadership">Leadership</button>
-      <button class="hub-node" data-node="campaigns">Campaigns &amp; Demand Gen</button>
-      <button class="hub-node" data-node="sales">Sales &amp; Customer Success</button>
-      <button class="hub-node" data-node="ld">Learning &amp; Development and Research</button>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="product">Product</button>
+      <button class="tab-btn" data-tab="leadership">Leadership</button>
+      <button class="tab-btn" data-tab="campaigns">Campaigns &amp; Demand Gen</button>
+      <button class="tab-btn" data-tab="sales">Sales &amp; Customer Success</button>
+      <button class="tab-btn" data-tab="ld">Learning &amp; Development and Research</button>
     </div>
 
-    <div class="hub-panel">
-      <div class="hub-panel-content active" data-node="product">
-        <h3>Product</h3>
-        <p>Share market intelligence and roadmap influence, surfacing the kind of gaps that came out of A&amp;P (a lab manual to be fully competitive) and Statistics (additional analytical features for the SALT tool) directly back to the product team.</p>
-      </div>
-      <div class="hub-panel-content" data-node="leadership">
-        <h3>Leadership</h3>
-        <p>Bring revenue and pipeline visibility into the conversation, tracking win rates and win/loss trends to inform where GTM investment should go next.</p>
-      </div>
-      <div class="hub-panel-content" data-node="campaigns">
-        <h3>Campaigns &amp; Demand Gen</h3>
-        <p>Partner on messaging, content, and event strategy, translating positioning into the campaigns that reach faculty and institutions.</p>
-      </div>
-      <div class="hub-panel-content" data-node="sales">
-        <h3>Sales &amp; Customer Success</h3>
-        <p>Build playbooks, battlecards, and training, then stay close to the field through strategy calls, listening to sales call transcripts, and participating in calls directly.</p>
-      </div>
-      <div class="hub-panel-content" data-node="ld">
-        <h3>Learning &amp; Development and Research</h3>
-        <p>Develop enablement programs and surface research insights that fuel success stories, white papers, and infographics.</p>
-      </div>
+    <div class="tab-panel active" data-tab="product">
+      <h3>Product</h3>
+      <p>Share market intelligence and roadmap influence, surfacing the kind of gaps that came out of A&amp;P (a lab manual to be fully competitive) and Statistics (additional analytical features for the SALT tool) directly back to the product team.</p>
+    </div>
+    <div class="tab-panel" data-tab="leadership">
+      <h3>Leadership</h3>
+      <p>Bring revenue and pipeline visibility into the conversation, tracking win rates and win/loss trends to inform where GTM investment should go next.</p>
+    </div>
+    <div class="tab-panel" data-tab="campaigns">
+      <h3>Campaigns &amp; Demand Gen</h3>
+      <p>Partner on messaging, content, and event strategy, translating positioning into the campaigns that reach faculty and institutions.</p>
+    </div>
+    <div class="tab-panel" data-tab="sales">
+      <h3>Sales &amp; Customer Success</h3>
+      <p>Build playbooks, battlecards, and training, then stay close to the field through strategy calls, listening to sales call transcripts, and participating in calls directly.</p>
+    </div>
+    <div class="tab-panel" data-tab="ld">
+      <h3>Learning &amp; Development and Research</h3>
+      <p>Develop enablement programs and surface research insights that fuel success stories, white papers, and infographics.</p>
     </div>
 
     <p class="eyebrow" style="margin-top:32px;">Proof points</p>
@@ -827,19 +736,6 @@
         tabButtons.forEach(b => b.classList.toggle('active', b === btn));
         tabPanels.forEach(p => p.classList.toggle('active', p.dataset.tab === tab));
       });
-    });
-  });
-
-  const hubNodes = document.querySelectorAll('.hub-node');
-  const hubLines = document.querySelectorAll('.hub-line');
-  const hubPanels = document.querySelectorAll('.hub-panel-content');
-
-  hubNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      const target = node.dataset.node;
-      hubNodes.forEach(n => n.classList.toggle('active', n === node));
-      hubLines.forEach(l => l.classList.toggle('active', l.dataset.node === target));
-      hubPanels.forEach(p => p.classList.toggle('active', p.dataset.node === target));
     });
   });
 
