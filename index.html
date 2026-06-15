@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adam Kiszka: PMM Perspective, Macmillan Learning Discipline Verticals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f7fb;
+    --surface-2:#e9eff7;
+    --border:#dde6f0;
+    --red:#ff5a36;
+    --red-light:#ffd9cf;
+    --red-text:#e0432a;
+    --red-dim:rgba(255,90,54,0.10);
+    --blue:#00b8a9;
+    --blue-text:#00897e;
+    --blue-dim:rgba(0,184,169,0.12);
+    --text:#1c2b4a;
+    --text-muted:#5b6b87;
+    --text-dim:#a3b3cc;
+    --shadow:0 1px 3px rgba(20,40,70,0.07), 0 1px 2px rgba(20,40,70,0.04);
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--red-text);
+    margin:0 0 14px;
+  }
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(28px,4vw,40px);
+    line-height:1.2;
+    margin:0 0 18px;
+  }
+  .lede{
+    color:var(--text-muted);
+    font-size:17px;
+    max-width:660px;
+    margin:0 0 36px;
+  }
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--border);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .reveal{
+    opacity:1;
+    transform:none;
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.pending{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal.pending{ opacity:1; transform:none; transition:none; }
+  }
+
+  header{
+    padding:96px 0 32px;
+  }
+  header .eyebrow{ color:var(--text-muted); }
+  h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.05;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  header .lede{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(18px,2.4vw,22px);
+    color:var(--text);
+    max-width:620px;
+    margin-bottom:0;
+  }
+
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .stat{
+    background:var(--surface);
+    padding:28px 22px;
+  }
+  .stat .num{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:clamp(20px,2.6vw,26px);
+    color:var(--red-text);
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .stat .label{
+    font-size:13px;
+    color:var(--text-muted);
+    line-height:1.5;
+  }
+  @media (max-width:640px){
+    .stats-grid{ grid-template-columns:1fr; }
+  }
+  .stats-tagline{
+    margin:24px 0 0;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:16px;
+    color:var(--text-muted);
+    text-align:center;
+  }
+
+  .tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:24px;
+  }
+  .tab-btn{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.06em;
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-muted);
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .tab-btn:hover{ color:var(--text); }
+  .tab-btn.active{
+    background:var(--red-dim);
+    border-color:var(--red);
+    color:var(--red-text);
+  }
+  .tab-btn:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+  .tab-panel{
+    display:none;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 32px;
+    box-shadow:var(--shadow);
+  }
+  .tab-panel.active{ display:block; animation:fadein .35s ease; }
+  @keyframes fadein{ from{ opacity:0; } to{ opacity:1; } }
+  .tab-panel h3{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--red-text);
+    margin:0 0 16px;
+  }
+  .tab-panel ul{
+    margin:0 0 0;
+    padding-left:22px;
+  }
+  .tab-panel li{
+    margin-bottom:10px;
+    color:var(--text);
+  }
+  .tab-panel li:last-child{ margin-bottom:0; }
+  .tab-panel .buying{
+    font-size:15px;
+    color:var(--text);
+    background:var(--blue-dim);
+    border:1px solid var(--blue);
+    border-radius:10px;
+    padding:12px 16px;
+    margin-bottom:18px;
+  }
+  .tab-panel .buying b{ color:var(--blue-text); }
+  .tab-panel .message{
+    margin-top:18px;
+    font-size:15px;
+    color:var(--text);
+    background:var(--red-dim);
+    border:1px solid var(--red);
+    border-radius:10px;
+    padding:12px 16px;
+  }
+  .tab-panel .message b{ color:var(--red-text); }
+
+  .callout{
+    margin-top:24px;
+    border:1px solid var(--blue-dim);
+    background:var(--blue-dim);
+    border-radius:14px;
+    padding:24px 28px;
+  }
+  .callout p{
+    margin:0;
+    color:var(--text);
+    font-size:15px;
+  }
+  .callout .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blue-text);
+    margin-bottom:10px;
+    display:block;
+  }
+  .callout b{ color:var(--text); }
+
+  .hub-stage{
+    position:relative;
+    width:100%;
+    max-width:620px;
+    margin:36px auto 0;
+    aspect-ratio:600/500;
+  }
+  .hub-stage svg{ width:100%; height:100%; display:block; }
+  .hub-line{
+    stroke:var(--border);
+    stroke-width:3;
+    transition:stroke .35s ease, stroke-width .35s ease;
+  }
+  .hub-line.active{
+    stroke:var(--red);
+    stroke-width:4;
+  }
+  .hub-center{
+    fill:var(--text);
+  }
+  .hub-center-text{
+    fill:#ffffff;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:15px;
+    text-anchor:middle;
+  }
+  .hub-node{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-muted);
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:13px;
+    text-align:center;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:all .25s ease;
+    max-width:170px;
+    line-height:1.3;
+  }
+  .hub-node:hover{ color:var(--text); border-color:var(--text-dim); }
+  .hub-node.active{
+    background:var(--red-dim);
+    border-color:var(--red);
+    color:var(--red-text);
+  }
+  .hub-node:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+
+  .hub-node[data-node="product"]{ left:18%; top:14%; }
+  .hub-node[data-node="leadership"]{ left:8%; top:50%; }
+  .hub-node[data-node="campaigns"]{ left:18%; top:86%; }
+  .hub-node[data-node="sales"]{ left:82%; top:14%; }
+  .hub-node[data-node="ld"]{ left:82%; top:86%; }
+
+  .hub-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px 32px;
+    margin-top:32px;
+    box-shadow:var(--shadow);
+    min-height:90px;
+  }
+  .hub-panel-content{ display:none; }
+  .hub-panel-content.active{ display:block; animation:fadein .35s ease; }
+  .hub-panel-content h3{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--red-text);
+    margin:0 0 12px;
+  }
+  .hub-panel-content p{ margin:0; color:var(--text); }
+
+  .proof-row{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    margin-top:32px;
+    box-shadow:var(--shadow);
+  }
+  .proof-card{
+    background:var(--surface);
+    padding:22px;
+  }
+  .proof-card .proof-title{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--red-text);
+    margin-bottom:8px;
+  }
+  .proof-card p{
+    margin:0;
+    font-size:14px;
+    color:var(--text-muted);
+  }
+  @media (max-width:760px){
+    .proof-row{ grid-template-columns:1fr; }
+  }
+
+  .why-intro{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:18px;
+    color:var(--text);
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 36px;
+  }
+  .why-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  @media (max-width:760px){
+    .why-grid{ grid-template-columns:1fr; }
+  }
+  .why-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+  .why-card h3{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:18px;
+    color:var(--text);
+    margin:0 0 10px;
+  }
+  .why-card p{
+    margin:0;
+    font-size:14.5px;
+    color:var(--text-muted);
+  }
+
+  .quote-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  @media (max-width:760px){
+    .quote-grid{ grid-template-columns:1fr; }
+  }
+  .quote-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:var(--shadow);
+  }
+  .quote-text{
+    color:var(--text-muted);
+    font-size:14.5px;
+    margin:0 0 16px;
+    display:-webkit-box;
+    -webkit-line-clamp:6;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .quote-text.expanded{
+    -webkit-line-clamp:unset;
+    overflow:visible;
+  }
+  .quote-text p{ margin:0 0 12px; }
+  .quote-text p:last-child{ margin-bottom:0; }
+  .quote-toggle{
+    align-self:flex-start;
+    background:none;
+    border:none;
+    color:var(--blue-text);
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    padding:0;
+    margin-bottom:16px;
+  }
+  .quote-attr{
+    margin-top:auto;
+    border-top:1px solid var(--border);
+    padding-top:14px;
+  }
+  .quote-attr .name{
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+  }
+  .quote-attr .role{
+    font-size:13px;
+    color:var(--text-dim);
+    margin-top:2px;
+  }
+  .source-note{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+    margin-top:20px;
+    letter-spacing:0.04em;
+  }
+
+  footer{
+    padding:64px 0 96px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  footer .name{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:20px;
+  }
+  footer .role{
+    color:var(--text-muted);
+    font-size:14px;
+  }
+  footer a{
+    color:var(--blue-text);
+    text-decoration:none;
+  }
+  footer a:hover{ text-decoration:underline; }
+  footer .built-note{
+    margin-top:28px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="reveal">
+    <p class="eyebrow">PMM Perspective: Discipline Verticals @ Macmillan Learning, Senior Product Marketing Manager</p>
+    <h1>Adam Kiszka</h1>
+    <p class="lede">Nearly 20 years in higher ed EdTech, and the discipline vertical playbook built over 13 years at Cengage.</p>
+  </header>
+
+  <section class="reveal" style="padding-top:40px;">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">$7.9M&rarr;$50M+</div>
+        <div class="label">Portfolio scope growth, based on performance</div>
+      </div>
+      <div class="stat">
+        <div class="num">166% &middot; 107% &middot; 196%</div>
+        <div class="label">3-year YoY revenue growth, A&amp;P platform launch ($0&rarr;$500K)</div>
+      </div>
+      <div class="stat">
+        <div class="num">13 yrs</div>
+        <div class="label">Higher ed EdTech expertise at Cengage</div>
+      </div>
+    </div>
+    <p class="stats-tagline">Nearly 20 years in higher education EdTech. Ready to bring discipline vertical expertise home to Macmillan Learning.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">GTM Product Launch: Anatomy &amp; Physiology (A&amp;P) Platform</p>
+    <h2>Problem, approach, outcome</h2>
+    <p class="lede">A&amp;P was a first edition launch into a discipline where Cengage had zero presence and faculty were loyal to entrenched competitors. Here&rsquo;s how that played out.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="problem">The Problem</button>
+      <button class="tab-btn" data-tab="approach">The Approach</button>
+      <button class="tab-btn" data-tab="outcome">The Outcome</button>
+    </div>
+
+    <div class="tab-panel active" data-tab="problem">
+      <ul>
+        <li>Zero Cengage presence in A&amp;P; this was a first edition launch.</li>
+        <li>Faculty were deeply loyal to entrenched competitors.</li>
+        <li>No brand awareness in the discipline.</li>
+        <li>Skeptical buyers required proof of credibility before considering a switch.</li>
+      </ul>
+    </div>
+    <div class="tab-panel" data-tab="approach">
+      <ul>
+        <li>Built the GTM foundation: positioning, messaging, and differentiation from scratch.</li>
+        <li>Secured a partnership with HAPS, the Human Anatomy &amp; Physiology Society, for peer-level faculty credibility.</li>
+        <li>Ran a full launch motion: author webinars, author blogs, a landing page, email campaigns, and targeted sales enablement.</li>
+        <li>Coordinated execution across Marketing, Campaigns, Product, Learning &amp; Development, and Sales teams.</li>
+      </ul>
+    </div>
+    <div class="tab-panel" data-tab="outcome">
+      <ul>
+        <li>Grew from $0 to $500K on the GTM foundation I built, which has since scaled to $1M+ in annual revenue.</li>
+        <li>166% YoY growth in Year 1.</li>
+        <li>107% YoY growth in Year 2.</li>
+        <li>196% YoY growth in Year 3.</li>
+        <li>Sustained GTM momentum, not a launch spike.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <span class="tag">Macmillan connection</span>
+      <p>Discipline vertical launches at Macmillan face the same dynamic: entering markets with deeply entrenched competitors and skeptical faculty buyers. I&rsquo;ve built the playbook for exactly this.</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">Value propositions across university stakeholders</p>
+    <h2>One product, four very different buyers</h2>
+    <p class="lede">Each stakeholder group buys for a different reason, and needs a different message. Here&rsquo;s how I think about positioning for each.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="admin">Admin &amp; Career Services</button>
+      <button class="tab-btn" data-tab="faculty">Faculty</button>
+      <button class="tab-btn" data-tab="it">IT</button>
+      <button class="tab-btn" data-tab="students">Students</button>
+    </div>
+
+    <div class="tab-panel active" data-tab="admin">
+      <div class="buying"><b>Buying:</b> Institutional outcomes</div>
+      <h3>Key factors</h3>
+      <ul>
+        <li>Student retention and graduate employability</li>
+        <li>Enrollment competitiveness</li>
+        <li>Institutional reputation</li>
+        <li>Peer institution proof points</li>
+      </ul>
+      <div class="message"><b>Message:</b> Prepare students for the workforce, not just graduation.</div>
+    </div>
+
+    <div class="tab-panel" data-tab="faculty">
+      <div class="buying"><b>Buying:</b> Academic trust and autonomy</div>
+      <h3>Key factors</h3>
+      <ul>
+        <li>A skeptical buyer by default</li>
+        <li>Driven by peer recommendations and academic rigor</li>
+        <li>Needs to feel like a complement to their teaching, not an imposition on it</li>
+        <li>Credibility has to come from within their own community</li>
+      </ul>
+      <div class="message"><b>Message:</b> This complements what you already teach.</div>
+    </div>
+
+    <div class="tab-panel" data-tab="it">
+      <div class="buying"><b>Buying:</b> Risk reduction</div>
+      <h3>Key factors</h3>
+      <ul>
+        <li>Integration, security, and LMS compatibility</li>
+        <li>Total cost of ownership</li>
+        <li>Support structure and SLAs</li>
+        <li>Risk management, not vision</li>
+      </ul>
+      <div class="message"><b>Message:</b> Works with your systems, won&rsquo;t create problems.</div>
+    </div>
+
+    <div class="tab-panel" data-tab="students">
+      <div class="buying"><b>Buying:</b> Career readiness and employability</div>
+      <h3>Key factors</h3>
+      <ul>
+        <li>Career-relevant curriculum and content</li>
+        <li>Tangible career outcomes</li>
+        <li>An engaged learning experience that prepares students for the workforce</li>
+        <li>Accessibility across print and digital formats</li>
+      </ul>
+      <div class="message"><b>Message:</b> Learn the skills employers are already asking for.</div>
+    </div>
+
+    <div class="callout">
+      <span class="tag">Key insight</span>
+      <p>The biggest GTM mistake in discipline vertical marketing is using the same message for all audiences. Faculty in Biology think differently than faculty in Economics.</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">How I orchestrate cross-functional GTM</p>
+    <h2>Product Marketing as the connective tissue</h2>
+    <p class="lede">Cross-functional alignment works best when everyone is bought into GTM goals before execution begins, not at the handoff. My framework: what we set out to accomplish, what we measured, what moved, and what to adjust next.</p>
+    <p class="lede">I managed GTM across Business, Math, and Science discipline verticals at Cengage, each with its own faculty culture, adoption cycle, and competitive dynamics. Early launches often surfaced clear needs for improvement: for A&amp;P, the need for a lab manual to be fully competitive and additional digital support for physiology content; for Statistics, additional analytical features needed for the SALT tool to be fully viable. Click through each team below to see how Product Marketing connects with them.</p>
+
+    <div class="hub-stage">
+      <svg viewBox="0 0 600 500" role="img" aria-label="Hub diagram showing Product Marketing connected to Product, Leadership, Campaigns and Demand Gen, Sales and Customer Success, and Learning and Development and Research">
+        <line class="hub-line active" data-node="product" x1="300" y1="250" x2="120" y2="80" />
+        <line class="hub-line" data-node="leadership" x1="300" y1="250" x2="65" y2="250" />
+        <line class="hub-line" data-node="campaigns" x1="300" y1="250" x2="120" y2="420" />
+        <line class="hub-line" data-node="sales" x1="300" y1="250" x2="480" y2="80" />
+        <line class="hub-line" data-node="ld" x1="300" y1="250" x2="480" y2="420" />
+        <circle class="hub-center" cx="300" cy="250" r="62" />
+        <text class="hub-center-text" x="300" y="245">Product</text>
+        <text class="hub-center-text" x="300" y="265">Marketing</text>
+      </svg>
+      <button class="hub-node active" data-node="product">Product</button>
+      <button class="hub-node" data-node="leadership">Leadership</button>
+      <button class="hub-node" data-node="campaigns">Campaigns &amp; Demand Gen</button>
+      <button class="hub-node" data-node="sales">Sales &amp; Customer Success</button>
+      <button class="hub-node" data-node="ld">Learning &amp; Development and Research</button>
+    </div>
+
+    <div class="hub-panel">
+      <div class="hub-panel-content active" data-node="product">
+        <h3>Product</h3>
+        <p>Share market intelligence and roadmap influence, surfacing the kind of gaps that came out of A&amp;P (a lab manual to be fully competitive) and Statistics (additional analytical features for the SALT tool) directly back to the product team.</p>
+      </div>
+      <div class="hub-panel-content" data-node="leadership">
+        <h3>Leadership</h3>
+        <p>Bring revenue and pipeline visibility into the conversation, tracking win rates and win/loss trends to inform where GTM investment should go next.</p>
+      </div>
+      <div class="hub-panel-content" data-node="campaigns">
+        <h3>Campaigns &amp; Demand Gen</h3>
+        <p>Partner on messaging, content, and event strategy, translating positioning into the campaigns that reach faculty and institutions.</p>
+      </div>
+      <div class="hub-panel-content" data-node="sales">
+        <h3>Sales &amp; Customer Success</h3>
+        <p>Build playbooks, battlecards, and training, then stay close to the field through strategy calls, listening to sales call transcripts, and participating in calls directly.</p>
+      </div>
+      <div class="hub-panel-content" data-node="ld">
+        <h3>Learning &amp; Development and Research</h3>
+        <p>Develop enablement programs and surface research insights that fuel success stories, white papers, and infographics.</p>
+      </div>
+    </div>
+
+    <div class="proof-row">
+      <div class="proof-card">
+        <div class="proof-title">A&amp;P launch</div>
+        <p>$500K in annual revenue with three consecutive years of 100%+ growth, since scaled to $1M+ in annual revenue.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-title">SALT launch</div>
+        <p>21% product line growth.</p>
+      </div>
+      <div class="proof-card">
+        <div class="proof-title">2025 Product Team of the Year</div>
+        <p>Awarded for highest revenue growth. Aufmann, Discovering Mathematics: A Quantitative Reasoning Approach, 2e, increased 106% over the previous edition.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">Why Macmillan Learning, why now</p>
+    <h2>The natural next chapter</h2>
+    <p class="why-intro">I don&rsquo;t just understand Macmillan&rsquo;s discipline vertical opportunity, I&rsquo;ve been competing against it for 13 years.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>The Homecoming</h3>
+        <p>I began my EdTech career at Bedford, Freeman &amp; Worth. Returning to Macmillan Learning feels less like a new chapter and more like coming full circle, with 20 years of EdTech expertise I didn&rsquo;t have the first time around.</p>
+      </div>
+      <div class="why-card">
+        <h3>The Discipline Vertical Fit</h3>
+        <p>I&rsquo;ve spent seven years owning GTM for discipline-specific product lines across Business, Math, and Science at Cengage. Discipline vertical marketing isn&rsquo;t generalist work, it requires deep understanding of faculty culture, adoption cycles, and competitive dynamics that vary by field. That&rsquo;s exactly what I&rsquo;ve been doing.</p>
+      </div>
+      <div class="why-card">
+        <h3>The Competitive Intelligence Advantage</h3>
+        <p>Having built GTM against McGraw Hill and Pearson&rsquo;s discipline titles for years, I understand your competitive position, your buyer dynamics, and your market opportunities. I know where the gaps are and how to message into them.</p>
+      </div>
+      <div class="why-card">
+        <h3>The Natural Next Chapter</h3>
+        <p>After 13 years at Cengage building GTM strategy across discipline verticals, I&rsquo;m ready to bring that expertise home to a company whose mission I&rsquo;ve respected my entire career.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">From the people I worked with</p>
+    <h2>What cross-functional partners say</h2>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-text">
+          <p>I had the opportunity to work closely with Adam during his time on our Biology product team, and his impact was felt across every major initiative he touched. He played a central role in our A&amp;P planning and the first-edition product launch, bringing clarity, structure, and momentum to complex projects.</p>
+          <p>One of his standout strengths is his ability to take highly technical or nuanced concepts and translate them into clear, compelling messaging that sales teams can immediately use. He helped bridge the gap between product and GTM execution, making a measurable difference in our revenue and market share.</p>
+          <p>He is also one of the hardest-working and most dependable people I&rsquo;ve collaborated with. His instincts for product marketing, including positioning, value articulation, and customer-centric mentality, will be a valuable asset to any organization.</p>
+          <p>Any team would be fortunate to have Adam&rsquo;s skill set and level of dedication.</p>
+        </div>
+        <button class="quote-toggle">Read more</button>
+        <div class="quote-attr">
+          <div class="name">Diana Baniak</div>
+          <div class="role">Senior Product Manager, Cengage &middot; A&amp;P launch</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">
+          <p>Adam was the product marketing manager who brought my first edition textbook to market. He was incredible to work with, kind, personable, detail-oriented and tireless. As an author, it&rsquo;s a crazy thing to put your book in someone else&rsquo;s hands, but Adam took it and ran with it on the national stage.</p>
+          <p>He did an exceptional job translating complex academic content into compelling, accessible messaging that account executives could use in the field. He had a remarkable handle on both student and instructor needs, holding dynamic conversations with instructors in the field.</p>
+          <p>What particularly stood out to me was Adam&rsquo;s data-driven decision making. He knew intuitively which opportunities were right for the book, streamlining my efforts as the author toward the events that were high impact. I enthusiastically recommend him to any organization looking for a skilled and insightful product marketing leader.</p>
+        </div>
+        <button class="quote-toggle">Read more</button>
+        <div class="quote-attr">
+          <div class="name">Elizabeth (Liz) Co</div>
+          <div class="role">Author &amp; Senior Lecturer, Boston University &middot; A&amp;P launch</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">
+          <p>I had the pleasure of working alongside Adam for several years when he was the Product Marketing Manager for my product team. He was a key collaborator on what was easily the highest performing team I have ever been a part of.</p>
+          <p>Adam&rsquo;s background in sales imbues him with a natural talent for understanding and engaging customers, ensuring their voices are not only heard but also integral in shaping market messaging. His leadership in orchestrating the go-to-market strategy for a major software release for students was pivotal in its success, contributing to 21% growth in our product line.</p>
+          <p>What truly sets Adam apart is his versatility. He embodies the archetype of a &ldquo;V-shaped player,&rdquo; excelling in his role while consistently stepping up to support others within the team. His work ethic is unmatched.</p>
+          <p>Working with Adam was not only professionally rewarding but also personally enjoyable. I hope to work with him again in the future.</p>
+        </div>
+        <button class="quote-toggle">Read more</button>
+        <div class="quote-attr">
+          <div class="name">Andy Trus</div>
+          <div class="role">Product Manager, Cengage &middot; Statistics SALT launch</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-text">
+          <p>I had the pleasure of working with Adam on both new-hire onboarding and the launch of new Higher Ed sales programs. Adam is an exceptionally detail-oriented marketing manager who consistently creates practical, high-impact tools that empower sellers. His work helps sales teams sharpen their questioning strategies, clearly position product value, and support customers throughout the entire journey.</p>
+          <p>Adam played a key role in onboarding training and has a real talent for positioning solutions in a way that resonates with everyone, even generalists managing large and complex portfolios. He is highly responsive, collaborative, and always willing to go the extra mile. During our sales program launches, Adam was instrumental in bringing the marketing team into Salesforce and defining a clear framework for effective collaboration between sales, marketing, and product teams.</p>
+          <p>I truly enjoyed working with Adam and would enthusiastically recommend him.</p>
+        </div>
+        <button class="quote-toggle">Read more</button>
+        <div class="quote-attr">
+          <div class="name">Christie Decker</div>
+          <div class="role">Director of Sales Programs, Cengage</div>
+        </div>
+      </div>
+    </div>
+    <p class="source-note">All quotes sourced from LinkedIn recommendations.</p>
+  </section>
+
+  <footer class="reveal">
+    <div class="name">Adam Kiszka</div>
+    <div class="role">Senior Product Marketing Manager &middot; <a href="https://www.linkedin.com/in/adamkiszka" target="_blank" rel="noopener">linkedin.com/in/adamkiszka</a></div>
+    <div class="built-note">Built with Claude.</div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('section').forEach(section => {
+    const tabButtons = section.querySelectorAll('.tab-btn');
+    const tabPanels = section.querySelectorAll('.tab-panel');
+    if (!tabButtons.length) return;
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        tabButtons.forEach(b => b.classList.toggle('active', b === btn));
+        tabPanels.forEach(p => p.classList.toggle('active', p.dataset.tab === tab));
+      });
+    });
+  });
+
+  const hubNodes = document.querySelectorAll('.hub-node');
+  const hubLines = document.querySelectorAll('.hub-line');
+  const hubPanels = document.querySelectorAll('.hub-panel-content');
+
+  hubNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const target = node.dataset.node;
+      hubNodes.forEach(n => n.classList.toggle('active', n === node));
+      hubLines.forEach(l => l.classList.toggle('active', l.dataset.node === target));
+      hubPanels.forEach(p => p.classList.toggle('active', p.dataset.node === target));
+    });
+  });
+
+  document.querySelectorAll('.quote-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.previousElementSibling;
+      const expanded = text.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Show less' : 'Read more';
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    revealEls.forEach(el => el.classList.add('pending'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.remove('pending');
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+  }
+</script>
+
+</body>
+</html>
